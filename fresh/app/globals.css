@@ -1,3 +1,4 @@
+/*
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -24,4 +25,20 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+*/
+
+body {
+  margin: 0;
+  background: #303030;
+  color: white;
+}
+
+.title {
+  text-align: center;
+  margin-top: 150px;
+}
+
+.title-sub {
+  text-align: center;
 }
