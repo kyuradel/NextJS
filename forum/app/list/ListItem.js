@@ -31,14 +31,26 @@ export default function ListItem(props){
             });
         }
     };
+
+    // 관리자인지 확인하는 함수
+    const isAdmin = () => {
+        return session && session.user && session.user.role === 'admin';
+    }
+
+    // 글 작성자인지 확인하는 함수
+    const isAuthor = (authorEmail) => {
+        return session && session.user && session.user.email === authorEmail;
+    }
     
     return (
         <>
         {props.result.map((item, idx) => (
             <div className="list-item" key={idx}>
                 <h4><Link href={`/detail/${item._id}`}>{item.title}</Link></h4>
-                <Link href={`/edit/${item._id}`}>✏️</Link>
-                { session && session.user && session.user.email === item.author && (
+                {/* 수정 버튼 - 글 작성자만 표시 */}
+                {isAuthor(item.author) && (<Link href={`/edit/${item._id}`}>✏️</Link>) }
+                {/* 삭제 버튼 - 글 작성자 또는 관리자에게 표시 */}
+                { (isAuthor(item.author) || isAdmin()) && (
                     <span onClick={() => handelDelete(item._id)} 
                     style={{ cursor: 'pointer' }}>🗑️</span>
                 )}

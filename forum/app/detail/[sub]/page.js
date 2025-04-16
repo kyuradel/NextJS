@@ -1,6 +1,7 @@
 // app/detail/[sub]/page.js
 import { connectDB } from "@/util/database";
 import { ObjectId } from "mongodb";
+import Comment from "./Comment"
 
 export default async function Detail({ params }) {
   console.log("params:", params); // 이제 터미널에 찍힘!
@@ -17,6 +18,7 @@ export default async function Detail({ params }) {
       <h4>상세페이지</h4>
       <h4>{result.title}</h4>
       <p>{result.content}</p>
+      <Comment/>
     </div>
   );
 }
